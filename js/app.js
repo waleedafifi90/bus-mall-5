@@ -99,6 +99,7 @@ let productArray = [
 const firstPic = document.getElementById( 'firstPic' );
 const secondPic = document.getElementById( 'secondPic' );
 const thirdPic = document.getElementById( 'thirdPic' );
+const button=document.getElementById('button');
 
 let leftPIndex = 0;
 let midPIndex = 0;
@@ -163,6 +164,7 @@ function renderNewProduct() {
   // rightImage.src = Goat.all[0].image;
   //console.log(Product.all.shown);
 }
+//button.hidden;
 
 function handelClick( event ) {
 
@@ -186,8 +188,23 @@ function handelClick( event ) {
       //console.log( Product.all );
     }
   }removeEventListener('click',handelClick);
+
+  button.addEventListener('click',handelButton);
 }
 
+function handelButton(event){
+  const parentElement =document.getElementById('ul');
+  //const ul=document.createElement('ul');
+  //parentElement.appendChild(ul);
+  for(let i=0;i<Product.all.length;i++){
+    const li=document.createElement('li');
+    parentElement.appendChild(li);
+    li.textContent=`${Product.all.name} is clicked ${Product.all.clicks} and shown ${Product.all.shown}`;
+  }
+
+
+
+}
 
 
 //imageSection.addEventListener( 'click', handelClick );
@@ -195,6 +212,9 @@ firstPic.addEventListener('click',handelClick);
 secondPic.addEventListener('click',handelClick);
 thirdPic.addEventListener('click',handelClick);
 //console.log( Product.all );
+
+
+// button.addEventListener('click',handelButton);
 
 
 function randomNumber( min, max ) {

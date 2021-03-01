@@ -36,8 +36,6 @@ function getName( fileName ) {
 
 for( let i = 0; i < productArray.length; i++ ) {
   new Product( getName( productArray[i] ), productArray[i] );
-
-
 }
 
 
@@ -50,17 +48,23 @@ function renderNewProduct() {
   leftPIndex = index;
 
   let rightIndex;
-  do {
+  if(index===rightIndex){
     rightIndex = randomNumber( 0, Product.all.length - 1 );
-  } while( index === rightIndex );
+  }
+  // do {
+  //   rightIndex = randomNumber( 0, Product.all.length - 1 );
+  // } while( index === rightIndex );
 
   secondPic.src = Product.all[rightIndex].image;
   secondPic.alt = Product.all[rightIndex].name;
   midPIndex = rightIndex;
   let lastIndex;
-  do{
+  if(index===lastIndex|| rightIndex===lastIndex){
     lastIndex=randomNumber(0,Product.all.length-1);
-  }while(index===lastIndex||rightIndex===lastIndex);
+  }
+  // do{
+  //   lastIndex=randomNumber(0,Product.all.length-1);
+  // }while(index===lastIndex||rightIndex===lastIndex);
 
   thirdPic.src=Product.all[lastIndex].image;
   thirdPic.alt=Product.all[lastIndex].name;

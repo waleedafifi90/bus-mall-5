@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width: 960px;
+    margin: auto;
+}
+
+img{
+    width:300px;
+    height:300px;
+}
+
+header{
+    background-color: darkslategrey;
+    display: grid;
+    grid-template-columns: 100px 1fr; 
+    align-items: center;
+
+text-align: center;
+color: wheat;
+}
+
+.container{
+    display: grid;
+    grid-template-rows: 100px minmax(calc(100vh-170px),fr)50px ;
+gap:10px;
+}
+
+.imgSection{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    background-color: darkslategrey;
+    color: wheat;
+    text-align: center;
+}
+
+footer p{
+width: 100%;
+}

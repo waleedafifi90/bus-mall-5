@@ -40,19 +40,27 @@ for( let i = 0; i < productArray.length; i++ ) {
 
 }
 
-
+let indexs=[];
 
 function renderNewProduct() {
+  // while(indexs.length=3)
+  // for(let i=0;i< indexs.i++){
+  //   if()
+// index=randomNumber( 0, Product.all.length - 1 );
+// rightIndex = randomNumber( 0, Product.all.length - 1 );
+// lastIndex=randomNumber(0,Product.all.length-1);
+//   }
   let index = randomNumber( 0, Product.all.length - 1 );
 
   firstPic.src = Product.all[index].image;
   firstPic.alt = Product.all[index].name;
   leftPIndex = index;
-
+  indexs.push(index);
   let rightIndex;
   do {
     rightIndex = randomNumber( 0, Product.all.length - 1 );
   } while( index === rightIndex );
+  indexs.push(rightIndex);
 
   secondPic.src = Product.all[rightIndex].image;
   secondPic.alt = Product.all[rightIndex].name;
@@ -61,6 +69,7 @@ function renderNewProduct() {
   do{
     lastIndex=randomNumber(0,Product.all.length-1);
   }while(index===lastIndex||rightIndex===lastIndex);
+  indexs.push(lastIndex);
 
   thirdPic.src=Product.all[lastIndex].image;
   thirdPic.alt=Product.all[lastIndex].name;
@@ -109,7 +118,7 @@ function handelButton( ){
     li.textContent=`${Product.all[i].name} is clicked ${Product.all[i].clicks} and shown ${Product.all[i].shown}`;
   }
 
-
+  renderChart();
 
   button.removeEventListener('click',handelButton);
   button.innerText='reset';
@@ -130,8 +139,77 @@ thirdPic.addEventListener('click',handelClick);
 
 
 function randomNumber( min, max ) {
-  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+
+  let index=Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+  if(isValidIndex(index)==='false'){
+    index=Math.floor( Math.random() * ( max - min + 1 ) ) + min;}
+  else{
+    return(index);
+  }
 }
 
+function isValidIndex(index){
+  let valid='false';
+  for(let j=0;j<6;j++){
+    for(let i=0;i<indexs.length;i++)
+      if(index===indexs[i]){
+        valid='false';
+      }else{valid='true';}
+    if(indexs.length===6){
+      for(let j=0;j<indexs.length;j++){
+        indexs.pop();
+      }}
+  }return(valid);
+}
+
+
+
 renderNewProduct();
+
+function renderChart() {
+
+  let nameArray = [];
+  let clicksArray = [];
+  let shownArray=[];
+  for(let i = 0; i < Product.all.length; i++) {
+    nameArray.push(Product.all[i].name);
+    clicksArray.push(Product.all[i].clicks);
+    shownArray.push(Product.all[i].shown);
+
+  }
+
+  let ctx = document.getElementById( 'myChart' ).getContext( '2d' );
+  new Chart( ctx, {
+    type: 'bar',
+    data: {
+      labels: nameArray,
+      datasets: [
+        {
+          label: '# of Votes',
+          data: clicksArray,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 3
+        },
+        {
+          label: '# of shown',
+          data: shownArray,
+          backgroundColor:'blue',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 3
+        }
+      ]
+
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  } );
+}
 

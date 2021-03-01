@@ -48,23 +48,17 @@ function renderNewProduct() {
   leftPIndex = index;
 
   let rightIndex;
-  if(index===rightIndex){
+  do {
     rightIndex = randomNumber( 0, Product.all.length - 1 );
-  }
-  // do {
-  //   rightIndex = randomNumber( 0, Product.all.length - 1 );
-  // } while( index === rightIndex );
+  } while( index === rightIndex );
 
   secondPic.src = Product.all[rightIndex].image;
   secondPic.alt = Product.all[rightIndex].name;
   midPIndex = rightIndex;
   let lastIndex;
-  if(index===lastIndex|| rightIndex===lastIndex){
+  do{
     lastIndex=randomNumber(0,Product.all.length-1);
-  }
-  // do{
-  //   lastIndex=randomNumber(0,Product.all.length-1);
-  // }while(index===lastIndex||rightIndex===lastIndex);
+  }while(index===lastIndex||rightIndex===lastIndex);
 
   thirdPic.src=Product.all[lastIndex].image;
   thirdPic.alt=Product.all[lastIndex].name;

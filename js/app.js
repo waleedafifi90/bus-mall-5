@@ -185,6 +185,14 @@ function renderChart() {
           ticks: {
             beginAtZero: true
           }
+        }],
+        xAxes: [{
+          ticks: {
+            fontColor: 'purple',
+            fontSize: 14,
+            stepSize: 1,
+            beginAtZero: true
+          }
         }]
       }
     }

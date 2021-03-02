@@ -50,10 +50,34 @@ footer{
 footer p{
 width: 100%;
 }
-#ol{
-    list-style:circle;
 
+#ol{
+    list-style:none;
+    columns: 2;
 }
+
+li {
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+li:nth-child(odd) {
+    background: #ded8db;
+}
+
+li:nth-child(even) {
+    background: #ded1db;
+}
+li {
+    padding-left: 1.3em;
+}
+li:before {
+    content: "\f270"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -1.3em; /* same as padding-left set on li */
+    width: 1.3em; /* same as padding-left set on li */
+  }
 
 button{
     border-radius: 20px;
